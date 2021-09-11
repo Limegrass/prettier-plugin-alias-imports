@@ -1,0 +1,112 @@
+{
+    "name": "prettier-plugin-alias-imports",
+    "version": "0.1.0",
+    "description": "alias imports in a sorted preference",
+    "repository": {
+        "url": "https://github.com/Limegrass/prettier-plugin-alias-imports",
+        "type": "git"
+    },
+    "homepage": "https://github.com/Limegrass/prettier-plugin-alias-imports",
+    "license": "MIT",
+    "files": [
+        "build"
+    ],
+    "imports": {
+        "#src/*": "./build/*.js"
+    },
+    "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "clean": "rimraf build",
+        "coverage": "jest --coverage",
+        "prepare": "husky install",
+        "test": "jest",
+        "test:debug": "jest --no-cache",
+        "test:watch": "jest --watch"
+    },
+    "keywords": [
+        "alias",
+        "import",
+        "javascript",
+        "plugin",
+        "prettier",
+        "typescript"
+    ],
+    "devDependencies": {
+        "@types/jest": "^27.0.0",
+        "@types/prettier": "^2.3.0",
+        "@typescript-eslint/eslint-plugin": "^4.28.0",
+        "@typescript-eslint/parser": "^4.28.0",
+        "eslint": "^7.0.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-import-resolver-typescript": "^2.4.0",
+        "eslint-plugin-import": "^2.24.0",
+        "eslint-plugin-prefer-arrow": "^1.2.3",
+        "eslint-plugin-tsdoc": "^0.2.0",
+        "husky": "^7.0.0",
+        "lint-staged": "^11.1.0",
+        "prettier": "^2.0.0",
+        "rimraf": "^3.0.0",
+        "ts-jest": "^27.0.0",
+        "ts-node": "^10.2.0",
+        "tslib": "^2.3.0",
+        "typescript": "^4.3.0"
+    },
+    "peerDependencies": {
+        "prettier": "^2.0.0"
+    },
+    "eslintConfig": {
+        "env": {
+            "es2021": true,
+            "node": true
+        },
+        "extends": [
+            "eslint:recommended",
+            "plugin:@typescript-eslint/eslint-recommended",
+            "plugin:@typescript-eslint/recommended",
+            "plugin:import/recommended",
+            "plugin:import/typescript",
+            "prettier"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "plugins": [
+            "@typescript-eslint",
+            "eslint-plugin-tsdoc",
+            "import",
+            "prefer-arrow"
+        ],
+        "root": true,
+        "rules": {
+            "import/no-default-export": "error",
+            "prefer-arrow/prefer-arrow-functions": [
+                "error",
+                {
+                    "disallowPrototype": true,
+                    "singleReturnOnly": false,
+                    "classPropertiesAllowed": false
+                }
+            ],
+            "tsdoc/syntax": "warn"
+        },
+        "settings": {
+            "import/parsers": {
+                "@typescript-eslint/parser": [
+                    ".ts"
+                ]
+            },
+            "import/resolver": {
+                "typescript": {}
+            }
+        }
+    },
+    "eslintIgnore": [
+        "build",
+        "node_modules"
+    ],
+    "prettier": {
+        "tabWidth": 4
+    },
+    "lint-staged": {
+        "*.{js,json,ts}": "eslint",
+        "*.{js,json,ts,md}": "prettier --write"
+    }
+}
