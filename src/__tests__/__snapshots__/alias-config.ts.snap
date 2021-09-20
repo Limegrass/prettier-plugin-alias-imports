@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loadAliases(babel) returns mapped alias and patterns for valid tsconfig 1`] = `
+Array [
+  Object {
+    "alias": "test",
+    "path": Object {
+      "absolute": "git/proj/tsconfig.json/potato",
+    },
+  },
+]
+`;
+
+exports[`loadAliases(typescript) returns mapped alias and patterns for valid tsconfig 1`] = `
+Array [
+  Object {
+    "alias": "test",
+    "path": Object {
+      "absolute": "git/proj/tsconfig.json/potato",
+    },
+  },
+]
+`;

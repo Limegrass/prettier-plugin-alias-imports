@@ -8,6 +8,7 @@
     },
     "homepage": "https://github.com/Limegrass/prettier-plugin-alias-imports",
     "license": "MIT",
+    "main": "build/plugin.js",
     "files": [
         "build"
     ],
@@ -31,8 +32,21 @@
         "prettier",
         "typescript"
     ],
+    "dependencies": {
+        "@babel/generator": "^7.15.0",
+        "@babel/parser": "^7.15.0",
+        "@babel/traverse": "^7.15.0",
+        "debug": "^4.3.0",
+        "find-up": "^5.0.0",
+        "micromatch": "^4.0.0",
+        "tsconfig-paths": "^3.11.0"
+    },
     "devDependencies": {
+        "@types/debug": "^4.1.7",
+        "@types/glob": "^7.1.4",
+        "@types/glob-to-regexp": "^0.4.1",
         "@types/jest": "^27.0.0",
+        "@types/micromatch": "^4.0.2",
         "@types/prettier": "^2.3.0",
         "@typescript-eslint/eslint-plugin": "^4.28.0",
         "@typescript-eslint/parser": "^4.28.0",
@@ -103,7 +117,10 @@
         "node_modules"
     ],
     "prettier": {
-        "tabWidth": 4
+        "tabWidth": 4,
+        "plugins": [
+            "."
+        ]
     },
     "lint-staged": {
         "*.{js,json,ts}": "eslint",
