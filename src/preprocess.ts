@@ -11,15 +11,17 @@ import { ImportDeclaration } from "@babel/types";
 import { dirname, join, resolve } from "path";
 import { AST } from "prettier";
 
+const JSX = "jsx";
+
 const ParserPlugins: Record<SupportedParserName, ParserPlugin[]> = {
     [SupportedParsers.TypeScript]: [
         SupportedParsers.TypeScript,
-        "jsx",
+        JSX,
         "decorators-legacy",
         "classProperties",
     ],
-    [SupportedParsers.Babel]: [],
-    [SupportedParsers.Flow]: [SupportedParsers.Flow],
+    [SupportedParsers.Babel]: [JSX],
+    [SupportedParsers.Flow]: [SupportedParsers.Flow, JSX],
 };
 
 const getAst = (code: string, options: AliasImportOptions) => {
