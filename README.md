@@ -32,3 +32,21 @@ For example, the #src import will be preferred with the following configuration.
     }
 }
 ```
+
+## Troubleshooting
+
+#### @trivago/prettier-plugin-sort-imports
+
+Explicitly assigning the plugins with the trivago plugin first seems to help.
+
+```jsonc
+// prettier configuration
+{
+    // ...other prettier options
+    "plugins": [
+        "./node_modules/@trivago/prettier-plugin-sort-imports",
+        "./node_modules/prettier-plugin-alias-imports"
+        // ...other prettier plugins
+    ]
+}
+```
