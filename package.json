@@ -19,7 +19,7 @@
         "build": "tsc -p tsconfig.build.json",
         "clean": "rimraf build",
         "coverage": "jest --coverage",
-        "prepare": "husky install",
+        "prepare": "husky install && npm run clean && npm run build",
         "test": "jest",
         "test:debug": "jest --no-cache",
         "test:watch": "jest --watch"
