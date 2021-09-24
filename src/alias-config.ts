@@ -1,9 +1,5 @@
 import { log } from "#src/log";
-import {
-    AliasImportOptions,
-    SupportedParserName,
-    SupportedParsers,
-} from "#src/options";
+import { AliasImportOptions } from "#src/options";
 // Unsure how to best support find-up@^6.0.0 with the change to modules
 // May depend on https://github.com/prettier/prettier/issues/8772
 import { sync as findUpSync } from "find-up";
@@ -14,15 +10,6 @@ import {
     ConfigLoaderSuccessResult,
     loadConfig,
 } from "tsconfig-paths";
-
-const JSCONFIG = "jsconfig.json";
-const TSCONFIG = "tsconfig.json";
-
-const DEFAULT_CONFIG_PATH: Record<SupportedParserName, string> = {
-    [SupportedParsers.TypeScript]: TSCONFIG,
-    [SupportedParsers.Babel]: JSCONFIG,
-    [SupportedParsers.Flow]: JSCONFIG,
-} as const;
 
 /**
  * Failed loads result from invalid tsconfigs or tsconfigs without baseUrl.
@@ -37,7 +24,9 @@ export const loadAliasConfigs = (
     options: AliasImportOptions
 ): AliasConfig[] => {
     const configFilePath = findUpSync(
-        options.aliasConfigPath ?? DEFAULT_CONFIG_PATH[options.parser]
+        [options.aliasConfigPath, "tsconfig.json", "jsconfig.json"].filter(
+            Boolean
+        ) as string[]
     );
 
     if (!configFilePath) {

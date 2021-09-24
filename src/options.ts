@@ -35,6 +35,8 @@ export const options: AliasImportSupportOptions = {
         since: "0.1.0",
         type: "path", // string is supported by prettier but the types needs to be updated
         category: "Global",
-        description: "Configuration file to read. Defaults to tsconfig.json",
+        description:
+            "the path to the tsconfig.json or jsconfig.json configuration file." +
+            " tries both tsconfig.json and jsconfig.json by default",
     },
 };

@@ -1,5 +1,184 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`loadAliases(babel) returns an empty array if config path cannot be located 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Array [
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`loadAliases(babel) returns an empty array if the tsconfig has errors 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Array [
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+  ],
+}
+`;
+
 exports[`loadAliases(babel) returns mapped alias and patterns for valid tsconfig 1`] = `
 Array [
   Object {
@@ -9,6 +188,99 @@ Array [
     },
   },
 ]
+`;
+
+exports[`loadAliases(typescript) returns an empty array if config path cannot be located 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Array [
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`loadAliases(typescript) returns an empty array if the tsconfig has errors 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Array [
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+    Array [
+      Array [
+        "potato.com",
+        "tsconfig.json",
+        "jsconfig.json",
+      ],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": "tsconfig.json",
+    },
+  ],
+}
 `;
 
 exports[`loadAliases(typescript) returns mapped alias and patterns for valid tsconfig 1`] = `

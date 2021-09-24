@@ -49,15 +49,18 @@ describe.each([
         const customConfigPath = "potato.com";
         options.aliasConfigPath = customConfigPath;
         loadAliasConfigs(options);
-        expect(findUpSync).toHaveBeenCalledWith(options.aliasConfigPath);
+        expect(findUpSync).toHaveBeenCalledWith(
+            expect.arrayContaining([options.aliasConfigPath])
+        );
     });
 
-    it("returns an empty arrow if config path cannot be located", () => {
+    it("returns an empty array if config path cannot be located", () => {
         const customConfigPath = "potato.com";
         options.aliasConfigPath = customConfigPath;
         (findUpSync as unknown as jest.Mock).mockReturnValue(undefined);
-        loadAliasConfigs(options);
-        expect(findUpSync).toHaveBeenCalledWith(options.aliasConfigPath);
+        const configs = loadAliasConfigs(options);
+        expect(findUpSync).toMatchSnapshot();
+        expect(configs).toHaveLength(0);
     });
 
     it("returns an empty array if the tsconfig has errors", () => {
@@ -65,6 +68,7 @@ describe.each([
             resultType: "failed",
         });
         const configs = loadAliasConfigs(options);
+        expect(findUpSync).toMatchSnapshot();
         expect(configs).toHaveLength(0);
     });
 });
