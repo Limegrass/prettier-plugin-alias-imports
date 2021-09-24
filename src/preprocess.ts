@@ -10,6 +10,7 @@ import traverse, { NodePath } from "@babel/traverse";
 import { ImportDeclaration } from "@babel/types";
 import { dirname, join, resolve } from "path";
 import { AST } from "prettier";
+import slash from "slash";
 
 const JSX = "jsx";
 
@@ -77,9 +78,8 @@ const rewriteAliasedPath = (
     const bestAlias = getBestAlias(aliasConfigs, absModulePath);
 
     if (bestAlias && bestAlias !== currentAlias) {
-        node.source.value = absModulePath.replace(
-            bestAlias.path.absolute,
-            bestAlias.alias
+        node.source.value = slash(
+            absModulePath.replace(bestAlias.path.absolute, bestAlias.alias)
         );
     }
 };
@@ -93,9 +93,8 @@ const rewriteRelativePath = (
     const aliasConfig = getBestAlias(aliasConfigs, absModulePath);
 
     if (aliasConfig) {
-        node.source.value = absModulePath.replace(
-            aliasConfig.path.absolute,
-            aliasConfig.alias
+        node.source.value = slash(
+            absModulePath.replace(aliasConfig.path.absolute, aliasConfig.alias)
         );
     }
 };
