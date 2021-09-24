@@ -26,9 +26,9 @@ For example, the #src import will be preferred with the following configuration.
     "compilerOptions": {
         "baseUrl": ".", // required
         "paths": {
-            "#src/*": ["src/*"]
-            "#root/*": ["*"],
-        },
+            "#src/*": ["src/*"],
+            "#root/*": ["*"]
+        }
     }
 }
 ```
