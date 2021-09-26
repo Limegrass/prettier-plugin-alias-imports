@@ -1,11 +1,11 @@
-import { options } from "#src/options";
+import { options, SupportedParserName } from "#src/options";
 import { preprocess } from "#src/preprocess";
 import { Parser } from "prettier";
 import { parsers as babelParsers } from "prettier/parser-babel";
 import { parsers as flowParsers } from "prettier/parser-flow";
 import { parsers as typescriptParsers } from "prettier/parser-typescript";
 
-const parsers: Record<string, Parser> = {
+const parsers: Record<SupportedParserName, Parser> = {
     babel: {
         ...babelParsers.babel,
         preprocess,
