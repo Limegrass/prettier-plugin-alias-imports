@@ -26,7 +26,10 @@ export const loadAliasConfigs = (
     const configFilePath = findUpSync(
         [options.aliasConfigPath, "tsconfig.json", "jsconfig.json"].filter(
             Boolean
-        ) as string[]
+        ) as string[],
+        {
+            cwd: options.filepath, // works as dir
+        }
     );
 
     if (!configFilePath) {
