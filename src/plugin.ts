@@ -1,9 +1,35 @@
-import { options, SupportedParserName } from "#src/options";
-import { preprocess } from "#src/preprocess";
+import { AliasImportOptions, options, SupportedParserName } from "#src/options";
+import { preprocess as preprocessAliases } from "#src/preprocess";
 import { Parser } from "prettier";
 import { parsers as babelParsers } from "prettier/parser-babel";
 import { parsers as flowParsers } from "prettier/parser-flow";
 import { parsers as typescriptParsers } from "prettier/parser-typescript";
+
+// avoid recursive invocations
+let hasProcessed = false;
+
+/**
+ * Hack in support for other preprocessors
+ * by running all of them that has an entry for the current parser
+ */
+const preprocess = (code: string, options: AliasImportOptions): string => {
+    if (hasProcessed) return code;
+    const aliasedCode = preprocessAliases(code, options);
+    hasProcessed = true;
+    const preprocessedCode = options.plugins.reduce((wipCode, plugin) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const parsers = (plugin as any).parsers;
+        const parser = parsers[options.parser];
+        const otherPreprocess = parser?.preprocess;
+        if (otherPreprocess) {
+            return parser.preprocess(wipCode, options);
+        } else {
+            return preprocessedCode;
+        }
+    }, aliasedCode);
+    hasProcessed = false;
+    return preprocessedCode;
+};
 
 const parsers: Record<SupportedParserName, Parser> = {
     babel: {
