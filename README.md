@@ -35,18 +35,32 @@ For example, the #src import will be preferred with the following configuration.
 
 ## Troubleshooting
 
-#### @trivago/prettier-plugin-sort-imports
+#### Compatibility with other plugins
 
-Explicitly assigning the plugins with the trivago plugin first seems to help.
+Explicitly assign this plugin as the last plugin in your configuration list.
+
+This plugin runs prettier using every available plugin, so specifying it last
+guarantees that the result of this plugin will be resulting formatted code,
+which is the result of calling prettier with every plugin individually.
 
 ```jsonc
 // prettier configuration
 {
     // ...other prettier options
     "plugins": [
-        "./node_modules/@trivago/prettier-plugin-sort-imports",
-        "./node_modules/prettier-plugin-alias-imports"
         // ...other prettier plugins
+        "./node_modules/prettier-plugin-alias-imports"
     ]
 }
 ```
+
+## Disclaimer
+
+The way this (and most other plugins that aren't adding new language support) functions
+uses prettier APIs in a way that is not truly intended. The prettier team seems to consider
+these type of plugins experimental, so I can only somewhat guarantee usability for
+the version specified in package-lock.json (from dev dependencies, 2.4.0 at the time of writing).
+
+Also note that your editor performance may slightly suffer as it will technically
+run all other plugins except this one twice due to the implementation for compatibility
+with other plugins as mentioned in the [compatibility section](#compatibility-with-other-plugins)

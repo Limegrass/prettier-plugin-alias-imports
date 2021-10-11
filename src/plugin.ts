@@ -1,6 +1,6 @@
 import { AliasImportOptions, options, SupportedParserName } from "#src/options";
 import { preprocess as preprocessAliases } from "#src/preprocess";
-import { Parser } from "prettier";
+import { format, Parser } from "prettier";
 import { parsers as babelParsers } from "prettier/parser-babel";
 import { parsers as flowParsers } from "prettier/parser-flow";
 import { parsers as typescriptParsers } from "prettier/parser-typescript";
@@ -15,18 +15,16 @@ let hasProcessed = false;
 const preprocess = (code: string, options: AliasImportOptions): string => {
     if (hasProcessed) return code;
     hasProcessed = true;
-    const preprocessedCode = options.plugins.reduce((wipCode, plugin) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const parsers = (plugin as any).parsers;
-        const parser = parsers[options.parser];
-        if (parser?.preprocess) {
-            return parser.preprocess(wipCode, options);
-        } else {
-            return wipCode;
-        }
-    }, preprocessAliases(code, options));
-    hasProcessed = false;
-    return preprocessedCode;
+    const formattedCode = options.plugins.reduce(
+        (wipCode: string, plugin) =>
+            format(wipCode, {
+                ...options,
+                plugins: [plugin],
+            }),
+        preprocessAliases(code, options)
+    ) as string;
+    hasProcessed = false; // allows reformatting again for language servers
+    return formattedCode;
 };
 
 const parsers: Record<SupportedParserName, Parser> = {
