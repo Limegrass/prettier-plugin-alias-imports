@@ -14,19 +14,17 @@ let hasProcessed = false;
  */
 const preprocess = (code: string, options: AliasImportOptions): string => {
     if (hasProcessed) return code;
-    const aliasedCode = preprocessAliases(code, options);
     hasProcessed = true;
     const preprocessedCode = options.plugins.reduce((wipCode, plugin) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const parsers = (plugin as any).parsers;
         const parser = parsers[options.parser];
-        const otherPreprocess = parser?.preprocess;
-        if (otherPreprocess) {
+        if (parser?.preprocess) {
             return parser.preprocess(wipCode, options);
         } else {
-            return preprocessedCode;
+            return wipCode;
         }
-    }, aliasedCode);
+    }, preprocessAliases(code, options));
     hasProcessed = false;
     return preprocessedCode;
 };
