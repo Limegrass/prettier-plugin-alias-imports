@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prettier-plugin-alias-imports formats with other babel plugins 1`] = `
+"import { write } from \\"fs\\";
+import { potato } from \\"#src/potato\\";
+// potato
+"
+`;
+
+exports[`prettier-plugin-alias-imports formats with other flow plugins 1`] = `
+"import { write } from \\"fs\\";
+import { potato } from \\"#src/potato\\";
+// potato
+"
+`;
+
+exports[`prettier-plugin-alias-imports formats with other typescript plugins 1`] = `
+"import { write } from \\"fs\\";
+import { potato } from \\"#src/potato\\";
+// potato
+"
+`;
