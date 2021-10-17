@@ -18,6 +18,7 @@ const TEST_OPTIONS = Object.freeze({
 
 describe.each([
     { parser: SupportedParsers.TypeScript },
+    { parser: SupportedParsers.Flow },
     { parser: SupportedParsers.Babel },
 ])("loadAliases($parser)", ({ parser }) => {
     const options: AliasImportOptions = {
@@ -50,7 +51,8 @@ describe.each([
         options.aliasConfigPath = customConfigPath;
         loadAliasConfigs(options);
         expect(findUpSync).toHaveBeenCalledWith(
-            expect.arrayContaining([options.aliasConfigPath])
+            expect.arrayContaining([options.aliasConfigPath]),
+            expect.anything()
         );
     });
 
@@ -59,7 +61,7 @@ describe.each([
         options.aliasConfigPath = customConfigPath;
         (findUpSync as unknown as jest.Mock).mockReturnValue(undefined);
         const configs = loadAliasConfigs(options);
-        expect(findUpSync).toMatchSnapshot();
+        expect(findUpSync).toHaveBeenCalled();
         expect(configs).toHaveLength(0);
     });
 
@@ -68,7 +70,7 @@ describe.each([
             resultType: "failed",
         });
         const configs = loadAliasConfigs(options);
-        expect(findUpSync).toMatchSnapshot();
+        expect(findUpSync).toHaveBeenCalled();
         expect(configs).toHaveLength(0);
     });
 });
