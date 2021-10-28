@@ -15,16 +15,18 @@ let hasProcessed = false;
 const preprocess = (code: string, options: AliasImportOptions): string => {
     if (hasProcessed) return code;
     hasProcessed = true;
-    const formattedCode = options.plugins.reduce(
-        (wipCode: string, plugin) =>
-            format(wipCode, {
-                ...options,
-                plugins: [plugin],
-            }),
-        preprocessAliases(code, options)
-    ) as string;
-    hasProcessed = false; // allows reformatting again for language servers
-    return formattedCode;
+    try {
+        return options.plugins.reduce(
+            (wipCode: string, plugin) =>
+                format(wipCode, {
+                    ...options,
+                    plugins: [plugin],
+                }),
+            preprocessAliases(code, options)
+        ) as string;
+    } finally {
+        hasProcessed = false; // allows reformatting again for language servers
+    }
 };
 
 const parsers: Record<SupportedParserName, Parser> = {
