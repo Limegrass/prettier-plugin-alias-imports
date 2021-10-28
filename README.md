@@ -2,6 +2,12 @@
 
 A prettier plugin to rewrite import aliases from your alias configurations
 
+## Why
+
+-   Automatic imports by tsserver resolve to relative paths that can be normalized.
+-   It's easier to refactor by finding and replacing an absolute module path
+    without worrying about crafting the regex for `../` and `./`
+
 ## Requirements
 
 -   Node 14+
