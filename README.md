@@ -1,6 +1,10 @@
 # prettier-plugin-alias-imports
 
-A prettier plugin to rewrite import aliases from your alias configurations
+A prettier plugin to rewrite import aliases from your alias configurations.
+
+Although this plugin does work, you should really use an eslint rule instead.
+
+See [eslint-import-alias](https://github.com/steelsojka/eslint-import-alias) as the alternative.
 
 ## Why
 
