@@ -2,9 +2,9 @@
 
 A prettier plugin to rewrite import aliases from your alias configurations.
 
-Although this plugin does work, you should really use an eslint rule instead.
-
-See [eslint-import-alias](https://github.com/steelsojka/eslint-import-alias) as the alternative.
+This plugin is now deprecated in favor of an [ESLint plugin](https://github.com/Limegrass/eslint-plugin-import-alias),
+which functions the same when used with `eslint --fix`. It should also be lighter weight and selects the shortest alias by default.
+If you don't want to use my ESLint plugin, another alternative is [eslint-import-alias](https://github.com/steelsojka/eslint-import-alias).
 
 ## Why
 
